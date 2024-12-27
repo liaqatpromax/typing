@@ -1,0 +1,45 @@
+const handle = useCallback(
+  (e) => {
+    if (!orgpara && ["Tab", "Shift", "Control", "CapsLock"].includes(e.key)) return; // Do nothing if no paragraph is set
+
+    const spltd = orgpara.toLowerCase().split("");
+
+    if (e.key === "Backspace") {
+      // Handle Backspace
+      setWpm((prev) => (prev > 0 ? prev - 1 : prev));
+      setCorrectIndexes((prev) => {
+        if (prev.length === 0) return prev;
+        return prev.slice(0, -1); // Remove the last correct index
+      });
+      setInCorrectIndexes((prev) => {
+        if (prev.length === 0) return prev;
+        return prev.slice(0, -1); // Remove the last incorrect index
+      });
+      return; // Exit early to avoid further processing
+    }
+
+    // Check if the current character matches the key pressed
+    if (e.key === spltd[wpm]) {
+      // Correct character typed
+      setWpm((prev) => prev + 1);
+      setCorrectIndexes((prev) => [...prev, wpm]);
+    } else if (working) {
+      // Incorrect character typed
+      setWpm((prev) => prev + 1);
+      setInCorrectIndexes((prev) => [...prev, wpm]);
+    }
+
+    // Handle end of typing
+    if (working === false) {
+      setWpm(0);
+      setCorrectIndexes([]);
+      setInCorrectIndexes([]);
+      const lastVal = correctIndexes.length + 1;
+      const words = spltd.slice(0, lastVal);
+      const newArr = words.join("");
+      const res = newArr.split(" ");
+      setCount(res.length * 2);
+    }
+  },
+  [orgpara, wpm, working] // Ensure updated values are used
+);

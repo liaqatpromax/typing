@@ -1,0 +1,78 @@
+*{
+  font-family: 'Poppins', sans-serif;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.hei{
+  height:100vh;
+
+}
+.bc{
+background-image: url(../src/assets/pexels-felixmittermeier-956999.jpg);
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+}
+.letspace{
+  padding: 0 2px;
+  font-family: "Quicksand", serif;
+  font-weight: 600;
+}
+.fon{
+  font-family: "Quicksand", serif;
+}
+.bg{
+  background-color: rgba(255, 249, 249, 0.452);
+}
+.correct{
+    color: rgb(97, 160, 255);
+    font-weight: 700;
+    transition: all .2s ease;
+}
+.incorrect{
+    color: rgb(192, 25, 25);
+    transition: all .01s ease;
+}
+
+  input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.active{
+  border: 2px solid grey;
+  border-radius: 4px;
+  transition: all .1s ease;
+}
+/* const lastVal = correctIndexes.length 
+        const words = spltd.slice(0,lastVal)
+        const newArr = words.join('')
+        const res = newArr.split(' ')
+        const count = res.length * 2 */
+
+        .cursor {
+            /* opacity: 0; */
+            display: inline-block;
+            width: 1fpx;
+            height: f5px;
+            border-radius: 1rem;
+            
+            color: rgba(53, 214, 152, 0.959);;
+            background-color: rgba(53, 214, 152, 0.959);
+            animation: blink 1s step-end infinite;
+          }
+          
+          @keyframes blink {
+            50% {
+              background-color: transparent;
+            }
+          }
+          
